@@ -1,7 +1,7 @@
 Keras==2.3.1
 h5py==2.9.0
 numpy==1.16.4
-nltk==3.4.4
+nltk==3.4.5
 simplejson==3.16.0
 tensorflow==1.15.0
 six==1.12.0
