@@ -1,0 +1,53 @@
+root -> encoding "+" mark
+aggregate -> "count"
+aggregate -> "mean"
+aggregate -> "sum"
+bin -> "True"
+color -> aggregate "+" field "+" type
+color -> bin "+" field "+" type
+color -> field "+" timeUnit "+" type
+color -> field "+" type
+detail -> aggregate "+" field "+" type
+detail -> field "+" timeUnit "+" type
+detail -> field "+" type
+encoding -> color "+" x "+" y
+encoding -> detail "+" x "+" y
+encoding -> shape "+" x "+" y
+encoding -> size "+" x "+" y
+encoding -> color "+" size "+" x "+" y
+encoding -> color "+" shape "+" x "+" y
+encoding -> color "+" detail "+" x "+" y
+encoding -> detail "+" size "+" x "+" y
+encoding -> detail "+" shape "+" x "+" y
+encoding -> shape "+" size "+" x "+" y
+encoding -> x "+" y
+field -> "num"
+field -> "str"
+mark -> "area"
+mark -> "bar"
+mark -> "circle"
+mark -> "line"
+mark -> "point"
+mark -> "tick"
+shape -> aggregate "+" field "+" type
+shape -> field "+" timeUnit "+" type
+shape -> field "+" type
+size -> aggregate "+" field "+" type
+size -> field "+" timeUnit "+" type
+size -> field "+" type
+timeUnit -> "day"
+timeUnit -> "month"
+timeUnit -> "year"
+type -> "nominal"
+type -> "ordinal"
+type -> "quantitative"
+type -> "temporal"
+x -> aggregate "+" field "+" type
+x -> bin "+" field "+" type
+x -> field "+" timeUnit "+" type
+x -> field "+" type
+y -> aggregate "+" field "+" type
+y -> bin "+" field "+" type
+y -> field "+" timeUnit "+" type
+y -> field "+" type
+Nothing -> None
