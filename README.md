@@ -23,7 +23,7 @@ This _gvae/_ folder contains the GVAE model for visualizations based on the code
 > The models were exported and tested using *Tensorflow 1.15*. More recent versions might fail to load the saved models due to differences.
 
 ## Visualization tool (preview)
-The ChartSeer user interface consists of (a) a Chart Inspection Panel, a Chart Summarization Panel (including (b) a Summarization View, (c) a Data Table View, and (d) a Chart List View), and (e) a Chart Recommendation Panel. An analyst can easily gain knowledge about the overall landscape of EVA, e.g., identifying clusters, trends, and gaps of users' behavior in creating charts or conducting an analysis. Further, an analyst could utilize this knowledge to obtain effective recommendations by interacting with the system, e.g., peeking into "holes" of the current analysis space to get appropriate charts automatically generated within local regions of interest. 
+The ChartSeer user interface consists of a Chart Inspection Panel (left), Chart Summarization Panel (middle) including a Summarization View (middle top), a Data Table View (middle bottom), and a Chart List View (middle right), and a Chart Recommendation Panel (right). An analyst can easily gain knowledge about the overall landscape of their analysis, e.g., identifying clusters, trends, and gaps of users' behavior in creating charts. Further, an analyst could utilize this knowledge to obtain chart recommendations by interacting with the system, e.g., peeking into "holes" of the current analysis space to get appropriate charts automatically generated within local regions of interest. 
 
 <img src="assets/chartseer.gif" width="100%">
 
