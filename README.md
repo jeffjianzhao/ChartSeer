@@ -4,7 +4,7 @@ ChartSeer is a visualization tool that helps analysts steer their exploratory vi
 
 This repo contains the code for two main parts of the system: 1) the GVAE model (based on [GVAE](https://github.com/mkusner/grammarVAE)), and 2) the visualization tool (coming soon). The code is in corresponding with the following paper:
 
->Jian Zhao, Mingming Fan, Mi Feng. ChartSeer: Interactive Steering Exploratory Visual Analysis with Machine Intelligence. IEEE Transactions on Visualization and Computer Graphics (to appear). 
+>Jian Zhao, Mingming Fan, Mi Feng. [ChartSeer: Interactive Steering Exploratory Visual Analysis with Machine Intelligence.](https://ieeexplore.ieee.org/document/9174891) IEEE Transactions on Visualization and Computer Graphics (to appear). 
 
 ## Dataset
 The _sourcedata/_ folder contains a dataset of 9,917 visualization charts in the [VegaLite](https://vega.github.io/vega-lite/) format, including charts with one to four variables/encoding channels. This dataset is extended from the [Data2Vis dataset](https://github.com/victordibia/data2vis).
