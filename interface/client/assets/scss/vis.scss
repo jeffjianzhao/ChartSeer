@@ -1,0 +1,64 @@
+
+.background {
+    fill: white;
+    fill-opacity: 0.2;
+    cursor: default;
+}
+
+.chartdot {
+    cursor: pointer;
+    
+    stroke-width: 1px;
+    stroke: white;
+
+    // &.hovered circle, &.selected circle {
+    //     stroke-width: 5px;
+    //     stroke-opacity: 0.8;
+    //     stroke:black;
+    // }
+
+    circle {
+        fill: white;
+    }
+
+    rect {
+        fill: black;
+    }
+
+    text {
+        text-anchor: middle;
+        font-size: 11px;
+        alignment-baseline: central;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        fill: black;
+    }
+
+    .uidtext {
+        font-size: 9px;
+        font-weight: normal;
+        font-style: italic;
+        fill: white;
+    }
+
+    &.hovered circle, &.selected circle {
+        stroke: black;
+        stroke-width: 5px;
+    }
+}
+
+.cursorc {
+    stroke: none;
+    fill: crimson;
+    fill-opacity: 0.2;
+}
+
+.bubble {
+    fill: #dddddd;
+    fill-opacity: 0.8;
+}
+
+.backtext {
+    text-anchor: middle;
+    font-weight: bold;
+}

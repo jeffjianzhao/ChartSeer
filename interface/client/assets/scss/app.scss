@@ -1,0 +1,312 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,300,300italic);
+@import 'vis';
+
+html, body { 
+  height: 100%; 
+  width: 100%; 
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+#main_window {
+  position: absolute;
+  left: 0;
+  min-width: 1500px;
+  min-height: 800px;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+
+  label {
+    margin: 0 5px;
+  }
+}
+
+#toolbar {
+  width: 100%;
+  height: 40px;
+  display: inline-block;
+  font-size: 12px;
+
+  button {
+    margin: 10px;
+  }
+}
+
+#datafile {
+  width: 150px;
+}
+
+#panel1 {
+  position: absolute;
+  width: 350px;
+  height: 100%;
+  display: inline-block;
+  top: 40px;
+  left: 0;
+  margin: 0px;
+}
+
+#panel2 {
+  position: absolute;
+  height: 100%;
+  left: 350px;
+  right: 600px;
+  display: inline-block;
+  top: 40px;
+  margin: 0px;
+
+}
+
+#panel3 {
+  position: absolute;
+  width: 600px;
+  right: 0;
+  height: 100%;
+  display: inline-block;
+  top: 40px;
+  margin: 0px;
+}
+
+.panel-header {
+  position: absolute;
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  height: 20px;
+  display: inline-block;
+  border-color: white;
+}
+
+#weight_slider {
+  display: inline-block;
+  width: 150px;
+  height: 12px;
+  margin: 0px 2px;
+  outline: none;
+}
+
+#chartview {
+  width: 100%;
+  height: 280px;
+  top: 20px;
+  left: 0;
+  display: inline-block;
+  background: white;
+  border: gray 1px solid;
+  border-radius: 5px;
+  position: absolute;
+  margin: 2px;
+
+  .chartcontainer {
+    height: 90%;
+  }
+}
+
+#charteditor {
+  width: 100%;
+  top: 300px;
+  bottom: 0px;
+  left: 0;
+  position: absolute;
+  display: inline-block;
+  border: gray 1px solid;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+#chartcomposer {
+  width: 100%;
+  height: 130px;
+  padding: 5px 10px;
+  display: inline-block;
+  font-size: 12px;
+
+  label {
+    width: 50px;
+    display: inline-block;
+    font-weight: bold;
+    margin: 2px;
+  }
+
+  select {
+    width: 110px;
+    display: inline-block;
+    margin: 1px;
+  }
+}
+
+#editorcontainer {
+  width: 100%;
+  top: 170px;
+  bottom: 20px;
+  left: 0;
+  position: absolute;
+  border-top: 1px solid gray;
+  display: inline-block;
+}
+
+.editorbuttons {
+  height: 20px;
+  display: inline-block;
+
+  button {
+    margin: 2px;
+    height: 20px;
+    width: 80px;
+    border-radius: 2px;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+  }
+}
+
+#editorbutton2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+#sumview {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 20px;
+  bottom: 310px;
+  display: inline-block;
+  border: gray 1px solid;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+#dataview {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  font-size: 11px;
+  display: inline-block;
+  border: gray 1px solid;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+#allchartsview {
+  position: absolute;
+  width: 300px;
+  top: 20px;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  border: gray 1px solid;
+  border-radius: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  vertical-align: top;
+  margin: 2px;
+}
+
+#suggestionview {
+  position: absolute;
+  width: 300px;
+  top: 20px;
+  bottom: 0;
+  left: 300px;
+  display: inline-block;
+  border: gray 1px solid;
+  border-radius: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  vertical-align: top;
+  margin: 2px;
+}
+
+.chartdiv {
+  position: relative;
+  border-top: 1px dashed lightgray;
+  border-bottom: 1px dashed lightgray;
+}
+
+.chartlabel {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  display: inline-block;
+  width: 40px;
+  height: 12px;
+  background-color: transparent;
+  border-radius: 2px;
+  font-size: 11px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#tooltip {
+  position: absolute;
+  width: 400px;
+  height: 200px;
+  background-color: white;
+  pointer-events: none;
+  padding: 1px;
+  display: none;
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.legend-item {
+  margin: 1.5px;
+}
+
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 600px; 
+
+  label {
+    margin: 2px;
+    width: 150px; 
+    display: inline-block;
+  }
+
+  input {
+    width: 200px;
+    margin: 2px;
+    display: inline-block;
+  }
+
+  button {
+    margin: 10px 2px;
+  }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

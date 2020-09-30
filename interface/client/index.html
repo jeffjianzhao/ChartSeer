@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ChartSeer</title>
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+        <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    </head>
+    <body>
+        <div id="main_window">
+            <div id="toolbar">
+                <!-- <input type="file" id="datafile" name="datafile" /> -->
+                <button id="import">Import Data & Charts</button>
+                <label id="datafile"></label>
+                <button id="export">Export Data & Charts</button>
+                <label>Variable Color Encodings: </label><span id="legend"></span>
+            </div>
+            <div id="panel1">
+                <span class="panel-header"><label>Inspection</label></span>
+                <div id="chartview">
+                    <div class="chartcontainer"></div>
+                    <span class="chartlabel"></span>
+                    <span class="editorbuttons">
+                        <button id="add" style="color:#28a745">Add</button>
+                        <button id="update" style="color:#007bff">Update</button>
+                        <button id="remove" style="color:#dc3545">Remove</button>
+                    </span>
+                </div>
+                <div id="charteditor">
+                    <div id="chartcomposer">
+                        <label>Mark</label><select id="ch-mark"></select><br/>
+                        <label>X</label><select id="ch-x"></select><select id="ch-xtrans"></select><br/>
+                        <label>Y</label><select id="ch-y"></select><select id="ch-ytrans"></select><br/>
+                        <label>Color</label><select id="ch-color"></select><select id="ch-colortrans"></select><br/>
+                        <label>Size</label><select id="ch-size"></select><select id="ch-sizetrans"></select><br/>
+                        <label>Shape</label><select id="ch-shape"></select><br/>
+                    </div>
+                    <span class="editorbuttons">
+                        <button id="preview1" style="color:#007bff">Preview</button>
+                        <button id="cancel1" style="color:#dc3545;">Cancel</button>
+                    </span>
+                    <div id="editorcontainer"></div>
+                    <span class="editorbuttons" id="editorbutton2">
+                        <button id="preview2" style="color:#007bff">Preview</button>
+                        <button id="cancel2" style="color:#dc3545;">Cancel</button>
+                    </span>
+                </div>
+            </div>
+            <div id="panel2">
+                <span class="panel-header">
+                    <label>Summarization</label>
+                    <span id="slider_wrapper">
+                        <i>Data/Encoding Ratio</i><label id="weight">0.50</label>
+                        <input type="range" min="0" max="100" value="50" id="weight_slider">
+                    </span>
+                    <span id="check_wrapper">
+                        <i>Annotation</i>
+                        <input type="checkbox" id="show_bubble" checked>
+                    </span>
+                </span>
+                <div id="sumview"></div>
+                <div id="dataview">
+                    <table class="compact hover cell-border nowrap"></table>
+                </div>
+            </div>
+            <div id="panel3">
+                <span class="panel-header"><label>Charts and Recommendation</label></span>
+                <div id="allchartsview"></div>
+                <div id="suggestionview"></div>
+            </div>
+        </div>
+        <div id="tooltip">
+            <div class="chartcontainer"></div>
+            <span class="chartlabel"></span>
+        </div>
+        <div id="dialog" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <label for="myfile">Select a file:</label>
+                <input type="file" id="inputfile" name="myfile" /><br/>
+                <label for="myurl">Or past an url: </label>
+                <input type="text" id="inputurl" name="myurl" /><br/>
+                <p>A JSON object with the format of (see <a href="/data/cars.json" target="_blank">example</a>):<br />
+                <pre>
+{
+    charts: [...],      // chart specifications in Vega-Lite format
+    attributes: [...],  // metadata for the data attributes
+    data: [...]         // the actual data collection
+}
+                </pre></p>
+                <button id="submit">Submit</button>
+            </div>
+          
+          </div>
+        <div id="vegatest" style="visibility:hidden;"></div>
+    </body>    
+</html>
