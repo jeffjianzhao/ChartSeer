@@ -7,10 +7,10 @@ This repo contains the code for two main parts of the system: 1) the GVAE model 
 >Jian Zhao, Mingming Fan, Mi Feng. [ChartSeer: Interactive Steering Exploratory Visual Analysis with Machine Intelligence.](https://ieeexplore.ieee.org/document/9174891) IEEE Transactions on Visualization and Computer Graphics (to appear). 
 
 ## Dataset
-The _sourcedata/_ folder contains a dataset of 9,917 visualization charts in the [VegaLite](https://vega.github.io/vega-lite/) format, including charts with one to four variables/encoding channels. This dataset is extended from the [Data2Vis dataset](https://github.com/victordibia/data2vis).
+The _sourcedata/_ folder contains a dataset of 9,917 visualization charts in the [Vega-Lite](https://vega.github.io/vega-lite/) format, including charts with one to four variables/encoding channels. This dataset is extended from the [Data2Vis dataset](https://github.com/victordibia/data2vis).
 
-* _vegaspecs.txt_: Original raw VegaLite specifications
-* _vegaspects-processed.txt_: Processed VegaLite specifications by removing dataset-specific information, i.e., replacing data variable names with _num_ (numerical) and _str_ (ordinal, nominal).
+* _vegaspecs.txt_: Original raw Vega-Lite specifications
+* _vegaspects-processed.txt_: Processed Vega-Lite specifications by removing dataset-specific information, i.e., replacing data variable names with _num_ (numerical) and _str_ (ordinal, nominal).
 
 
 ## VisGVAE model
