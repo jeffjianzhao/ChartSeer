@@ -7,6 +7,6 @@ tensorflow==1.15.4
 Flask==1.0.2
 setuptools==41.0.1
 h5py==2.7.1
-Flask_Cors==3.0.4
+Flask_Cors==3.0.9
 six==1.11.0
 scikit_learn==0.21.2
