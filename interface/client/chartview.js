@@ -32,10 +32,10 @@ export default class ChartView extends EventEmitter {
 
     _init() {
         // text editor
-        this._cheditor = ace.edit('editorcontainer', {
-            mode: 'ace/mode/json',
-            minLines: 20
-        })
+        // this._cheditor = ace.edit('editorcontainer', {
+        //     mode: 'ace/mode/json',
+        //     minLines: 20
+        // })
 
         // ui controls
         var html = ''
@@ -85,6 +85,8 @@ export default class ChartView extends EventEmitter {
             this.emit('remove-chart', this.data)
         })
 
+        //这行代码为ID为preview1的元素注册了一个点击事件处理器。在这个处理器中，
+        // 它首先克隆当前的数据，然后根据用户选择的选项更新数据的编码。然后，它调用_validateChart方法来验证图表，并使用update方法来更新图表。
         $('#preview1').click((e) => {
             var data = _.cloneDeep(this.data)
             data['mark'] = $('#ch-mark').val()
@@ -121,6 +123,8 @@ export default class ChartView extends EventEmitter {
             this._validateChart(data, () => {this.update(data, 'uicontrols')})
         })
 
+        //这行代码为ID为preview2的元素注册了一个点击事件处理器。在这个处理器中，
+        // 它首先从编辑器中获取数据，然后调用_validateChart方法来验证图表，并使用update方法来更新图表。
         $('#preview2').click((e) => {
             var data = this._cheditor.session.getValue()
             this._validateChart(data, () => {this.update(data, 'texteditor')})            
@@ -186,6 +190,9 @@ export default class ChartView extends EventEmitter {
             }
         })
     }
+
+    //这是一个方法，它接收一个图表和一个回调函数作为参数。
+    // 这个方法首先将图表转换为字符串，然后替换字符串中的属性名，最后删除所有的空白字符。
 
     _validateChart(chart, callback) {
         var sp = chart

@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "build": "webpack",
-    "build:prod": "webpack -p",
+    "build:prod": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.prod.js",
     "watch": "webpack --watch",
-    "start": "nodemon server/server.js",
-    "start:prod": "NODE_ENV=prod node server/server.js"
+    "start": "nodemon server/server.js --openssl-legacy-provider",
+    "start:prod": "set NODE_ENV=prod node server/server.js"
   },
   "author": "Jian Zhao <zhao@fxpal.com>",
   "license": "GNU",

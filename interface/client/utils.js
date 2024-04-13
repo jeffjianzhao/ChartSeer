@@ -60,18 +60,49 @@ export function createDataTable(scrollH) {
 
 export function displayAllCharts(container, created) {
     $(container).empty()
+    // container = '#suggestionview'
+    // created = true
+
     app.sumview.charts.forEach((ch) => {
         if(ch.created == created) {
-            var vegachart = _.extend({}, ch.originalspec, 
-                { width: 270, height: 125, autosize: 'fit' }, 
-                { data: {values: app.data.chartdata.values} },
-                { config: vegaConfig})
-            $(container).append($('<div />', {class: 'chartdiv', id: 'chart' + ch.chid}))
-            $('#chart' + ch.chid).append('<div class="chartcontainer"></div><span class="chartlabel"></span>')
+        // if(true) {
+            $(container).append($('<div />', {id: 'chartall' + ch.chid}))
+
+            if(container == '#allchartsview') {
+                var vegachart = _.extend({}, ch.originalspec, 
+                    // { width: 270, height: 125, autosize: 'fit' }, 
+                    { width: 230, height: 130, autosize: 'fit' }, 
+                    { data: {values: app.data.chartdata.values} },
+                    { config: vegaConfig})
+                $('#chartall' + ch.chid).css({'display': 'flex', 'justify-content': 'space-between'})
+            }else {
+                var vegachart = _.extend({}, ch.originalspec,  
+                    { width: 150, height: 100, autosize: 'fit' }, 
+                    { data: {values: app.data.chartdata.values} },
+                    { config: vegaConfig})
+            }
+            
+            $('#chartall' + ch.chid).append($('<div />', {class: 'chartdiv', id: 'chart' + ch.chid}))
+
+            if(container == '#allchartsview') {
+                $('#chartall' + ch.chid).append($('<div />', {class: 'chartdiv', id: 'chartdesc' + ch.chid}))
+                $('#chartdesc' + ch.chid).append($(`
+                    <h4> What is the relationship between Housepower and Weight_i_lbs? </h3>
+                    <span> This visualization will help us understand the relationship between the power of the engine and the weight of the car.We can see if ... </span>
+                    <div>
+                        <button> Evaluate </button>
+                        <button> Show Query </button>
+                        <button> Recommend </button>
+                    </div>
+                `))
+                $('#chartdesc' + ch.chid + ' h4').css('margin', '10px 0 5px 0')
+                $('#chartdesc' + ch.chid + ' span').css({'font-size': '14px', 'text-align': 'justify', 'display': 'block'})
+                $('#chartdesc' + ch.chid + ' div').css({'display': 'flex', 'justify-content': 'space-between', 'margin-top': '10px'})
+            }
+
+            $('#chart' + ch.chid).append('<div class="chartcontainer"></div>')
 
             vegaEmbed('#chart' + ch.chid + ' .chartcontainer', vegachart, {actions: false})
-            $('#chart' + ch.chid + ' .chartlabel').css('background-color', ch.created ? '#f1a340' : '#998ec3')
-            $('#chart' + ch.chid + ' .chartlabel').html('#' + ch.chid + '-u' + ch.uid)
             
             $('#chart' + ch.chid).hover((e) => {
                 $('#chart' + ch.chid).css('border-color', 'crimson')
@@ -241,12 +272,24 @@ export function updateData(data, name) {
     })
 
     createDataTable(280)
+    // search();
     displayAllCharts('#allchartsview', false)
     displayAllCharts('#suggestionview', true)
 
     // events handling
     handleEvents()
 }
+// function search(){
+//     const inputDom = document.getElementById("search-input");
+//     const searchDom = document.getElementById("search-button");
+//     inputDom.addEventListener("input", (e)=>{
+//         app.searchValue = e.target.value;
+//     });
+//     searchDom.addEventListener("click", ()=>{
+//         console.log('search button click',app.searchValue)
+//         // TODO: 集成接口
+//     });
+// }
 
 function download(content, fileName, contentType) {
     var a = document.createElement("a");

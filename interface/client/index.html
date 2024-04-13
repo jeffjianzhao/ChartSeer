@@ -25,12 +25,25 @@
                     <div class="chartcontainer"></div>
                     <span class="chartlabel"></span>
                     <span class="editorbuttons">
+                        <input type="Modify Chart">
+                        <button id="refine"> Refine </button>
+                    </span>
+                    <!-- <span class="editorbuttons">
                         <button id="add" style="color:#28a745">Add</button>
                         <button id="update" style="color:#007bff">Update</button>
                         <button id="remove" style="color:#dc3545">Remove</button>
-                    </span>
+                    </span> -->
                 </div>
                 <div id="charteditor">
+                    <div id="chartediterdesc">
+                        <h4> What is the relationship between Housepower and Weight_i_lbs? </h3>
+                        <span> This visualization will help us understand the relationship between the power of the engine and the weight of the car.We can see if ... </span>
+                    </div>
+                </div>
+                <div id="chartcode">
+                    <!-- <div id="editorcontainer"></div> -->
+                </div>
+                <!-- <div id="charteditor">
                     <div id="chartcomposer">
                         <label>Mark</label><select id="ch-mark"></select><br/>
                         <label>X</label><select id="ch-x"></select><select id="ch-xtrans"></select><br/>
@@ -48,28 +61,55 @@
                         <button id="preview2" style="color:#007bff">Preview</button>
                         <button id="cancel2" style="color:#dc3545;">Cancel</button>
                     </span>
-                </div>
+                </div> -->
             </div>
             <div id="panel2">
                 <span class="panel-header">
                     <label>Summarization</label>
-                    <span id="slider_wrapper">
+                    <!-- <span id="slider_wrapper">
                         <i>Data/Encoding Ratio</i><label id="weight">0.50</label>
                         <input type="range" min="0" max="100" value="50" id="weight_slider">
                     </span>
                     <span id="check_wrapper">
                         <i>Annotation</i>
                         <input type="checkbox" id="show_bubble" checked>
-                    </span>
+                    </span> -->
                 </span>
+                <div id="genprocess">
+                    <div id="geninput">
+                        <input type="text" name="" id="">
+                        <button> generate </button>
+                    </div>
+                    <div id="genbuttons">
+                        <button> Import Data </button>
+                        <button> Reset </button>
+                        <button> Cancel </button>
+                        <button> Export Charts </button>
+                    </div>
+                </div>
                 <div id="sumview"></div>
+                <span id="datsetspan" class="panel-header"><label>Dateset</label></span>
                 <div id="dataview">
                     <table class="compact hover cell-border nowrap"></table>
                 </div>
             </div>
+            <!-- <div id="panel5">
+                <span class="panel-header"><label>Dateset</label></span>
+                <div id="dataview">
+                    <table class="compact hover cell-border nowrap"></table>
+                </div>
+            </div> -->
             <div id="panel3">
-                <span class="panel-header"><label>Charts and Recommendation</label></span>
+                <span class="panel-header"><label>Recommendation</label></span>
+                <!-- <div id="search-view">
+                    <input class="search-input" id="search-input" />
+                    <button class="search-button" id="search-button"> BUTTON </button>
+                </div> -->
                 <div id="allchartsview"></div>
+                <!-- <div id="suggestionview"></div> -->
+            </div>
+            <div id="panel4">
+                <span class="panel-header"><label>Charts</label></span>
                 <div id="suggestionview"></div>
             </div>
         </div>

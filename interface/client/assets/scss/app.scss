@@ -40,41 +40,97 @@ html, body {
 #panel1 {
   position: absolute;
   width: 350px;
-  height: 100%;
+  // height: 103.5%;
+  height: 828px;
   display: inline-block;
   top: 40px;
   left: 0;
   margin: 0px;
+  border: #91c4c3 2px solid;
+  text-align: center;
+}
+
+#genprocess {
+  position: relative;
+  z-index: 999;
+
+  #geninput {
+    text-align: center;
+
+    input {
+      height: 30px;
+      border-radius: 10px 0 0 10px;
+      width: 80%;
+      margin-top: 20px;
+      border: 2px solid gray;
+    }
+
+    button {
+      height: 35px;
+      border: 2px solid gray;
+      border-radius: 0 10px 10px 0;
+    }
+  }
+
+  #genbuttons {
+    margin-top: 10px;
+    margin-left: 30px;
+  }
 }
 
 #panel2 {
   position: absolute;
-  height: 100%;
-  left: 350px;
-  right: 600px;
+  // height: 100%;
+  height: 828px;
+  left: 365px;
+  right: 535px;
   display: inline-block;
   top: 40px;
   margin: 0px;
-
 }
 
 #panel3 {
   position: absolute;
-  width: 600px;
+  width: 525px;
+  height: 517px;
   right: 0;
-  height: 100%;
   display: inline-block;
   top: 40px;
   margin: 0px;
 }
 
-.panel-header {
+#panel4 {
   position: absolute;
+  width: 525px;
+  right: 0;
+  top: 565px;
+  height: 298px;
+  display: inline-block;
+  margin: 0px;
+}
+
+.panel-header {
+  display: block;
   width: 100%;
-  background-color: black;
+  background-color: #91c4c3;
   color: white;
   font-size: 15px;
-  height: 20px;
+  text-align: center;
+  height: 25px;
+  display: inline-block;
+  border-color: white;
+}
+
+#datsetspan {
+  position: relative;
+  top: 417px;
+  display: block;
+  width: 100%;
+  background-color: #91c4c3;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  height: 25px;
   display: inline-block;
   border-color: white;
 }
@@ -88,16 +144,16 @@ html, body {
 }
 
 #chartview {
-  width: 100%;
+  box-sizing: border-box;
+  width: 95%;
   height: 280px;
   top: 20px;
-  left: 0;
+  left: 2.5%;
   display: inline-block;
   background: white;
   border: gray 1px solid;
-  border-radius: 5px;
   position: absolute;
-  margin: 2px;
+  margin-top: 15px;
 
   .chartcontainer {
     height: 90%;
@@ -105,15 +161,26 @@ html, body {
 }
 
 #charteditor {
-  width: 100%;
-  top: 300px;
-  bottom: 0px;
-  left: 0;
+  box-sizing: border-box;
+  width: 95%;
+  top: 315px;
+  left: 2.5%;
+  height: 270px;
   position: absolute;
   display: inline-block;
   border: gray 1px solid;
-  border-radius: 5px;
-  margin: 2px;
+  margin-top: 10px;
+}
+
+#chartcode {
+  box-sizing: border-box;
+  width: 95%;
+  top: 607px;
+  left: 2.5%;
+  height: 210px;
+  position: absolute;
+  display: inline-block;
+  border: gray 1px solid;
 }
 
 #chartcomposer {
@@ -138,12 +205,12 @@ html, body {
 }
 
 #editorcontainer {
+  box-sizing: border-box;
   width: 100%;
   top: 170px;
   bottom: 20px;
   left: 0;
   position: absolute;
-  border-top: 1px solid gray;
   display: inline-block;
 }
 
@@ -170,63 +237,67 @@ html, body {
 }
 
 #sumview {
+  box-sizing: border-box;
   position: absolute;
   width: 100%;
   left: 0;
   top: 20px;
   bottom: 310px;
   display: inline-block;
-  border: gray 1px solid;
-  border-radius: 5px;
-  margin: 2px;
+  margin-top: 5px;
+  border: #91c4c3 2px solid;
 }
 
 #dataview {
+  box-sizing: border-box;
   position: absolute;
   left: 0;
   width: 100%;
-  bottom: 0;
+  height: 276px;
+  top: 555px;
   font-size: 11px;
   display: inline-block;
-  border: gray 1px solid;
-  border-radius: 5px;
-  margin: 2px;
+  border: #91c4c3 2px solid;
+  overflow-y: hidden;
 }
 
 #allchartsview {
+  box-sizing: border-box;
+  border: #91c4c3 2px solid;
   position: absolute;
-  width: 300px;
+  width: 100%;
+  height: 495px;
   top: 20px;
   bottom: 0;
   left: 0;
   display: inline-block;
-  border: gray 1px solid;
-  border-radius: 5px;
   overflow-y: auto;
   overflow-x: hidden;
   vertical-align: top;
-  margin: 2px;
 }
 
 #suggestionview {
-  position: absolute;
-  width: 300px;
-  top: 20px;
-  bottom: 0;
-  left: 300px;
-  display: inline-block;
-  border: gray 1px solid;
-  border-radius: 5px;
+  box-sizing: border-box;
+  border: #91c4c3 2px solid;
+  height: 280px;
+  width: 100%;
+  display: flex;
+  justify-content : center;
+  flex-wrap: wrap;
   overflow-y: auto;
   overflow-x: hidden;
   vertical-align: top;
-  margin: 2px;
 }
 
 .chartdiv {
   position: relative;
-  border-top: 1px dashed lightgray;
-  border-bottom: 1px dashed lightgray;
+  display: inline-block;
+
+  .chartcontainer {
+    padding-right: 0;
+    border: 1px solid gray;
+    margin: 10px 5px;
+  }
 }
 
 .chartlabel {

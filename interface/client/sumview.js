@@ -33,7 +33,7 @@ export default class SumView extends EventEmitter {
             clthreshold: 0.4,
             ngbrN: 5
         }
-        this._charts = []
+        this._charts = [] //所有的图表数组
         this._prevcharts = []
         this._clusterNum = 1
         this._bubbleSets = []
@@ -486,7 +486,7 @@ export default class SumView extends EventEmitter {
             }).done((data) => {
                 this._adjustScale(data)
                 this._charts.forEach((d, i) => {
-                    d.coords = data[i]
+                    d.coords = data[i] //为坐标赋值
                 })
                 console.log(this._charts)
                 callback()
@@ -525,7 +525,7 @@ export default class SumView extends EventEmitter {
         
     }
 
-    _computeDistanceMatrix(charts) {
+    _computeDistanceMatrix(charts) {//计算所有图表的距离
         var distances = []
         for(var i = 0; i < charts.length; i++) {
             distances.push([])
@@ -545,21 +545,22 @@ export default class SumView extends EventEmitter {
         return distances
     }
 
-    _chartDistance(chart1, chart2) {
-        var endist = 0
-        for(var z = 0; z < chart1.embedding.length; z++) {
-            var d = chart1.embedding[z] - chart2.embedding[z]
-            endist += d * d
-        }
-        endist = Math.sqrt(endist)
-        // variable distance - Jaccard
-        var vardist = 1 - _.intersection(chart1.vars, chart2.vars).length / 
-           _.union(chart1.vars, chart2.vars).length
-        // variable distance - Cosine
-        // var vardist = _.intersection(charts[i].vars, charts[j].vars).length / this.data.chartdata.attributes.length
+        _chartDistance(chart1, chart2) {//加权距离公式,α
+            var endist = 0
+            console.log(chart1.embedding.length);
+            for(var z = 0; z < chart1.embedding.length; z++) {
+                var d = chart1.embedding[z] - chart2.embedding[z]
+                endist += d * d
+            }
+            endist = Math.sqrt(endist)
+            // variable distance - Jaccard
+            var vardist = 1 - _.intersection(chart1.vars, chart2.vars).length / 
+            _.union(chart1.vars, chart2.vars).length
+            // variable distance - Cosine
+            // var vardist = _.intersection(charts[i].vars, charts[j].vars).length / this.data.chartdata.attributes.length
 
-        return this._params.distw * endist + (1 - this._params.distw) * vardist 
-    }
+            return this._params.distw * endist + (1 - this._params.distw) * vardist 
+        }
 
     _alignCoordinates() {
         var chids1 = this._prevcharts.map((ch) => {return ch.chid})
@@ -660,7 +661,16 @@ export default class SumView extends EventEmitter {
             this._formSpec(node[f], attributesMap, numattrs, strattrs, vars)
         }
     }
-
+    _setVars(node, vars) {
+        if(typeof node != 'object') return
+        if(node['field']) {
+            vars.push(node['field'])
+        }
+        
+        for(var f in node) {
+            this._setVars(node[f], vars)
+        }
+    }
     _kNN(p, k) {
         //var charts = _.filter(this._charts, ['created', false])
         var charts = _.sortBy(this._charts, (d) => {
@@ -732,26 +742,63 @@ export default class SumView extends EventEmitter {
                 data: JSON.stringify(data),
                 contentType: 'application/json'
             })
+        }).then((data) => {
+            embeddings = data;
+            return $.ajax({
+                context: this,
+                type: 'POST',
+                crossDomain: true,
+                url: this.conf.backend + '/decode_llm', // 修改URL为新的后端处理路径
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function(response) {
+                    console.log("处理结果:", response);
+                },
+                error: function(error) {
+                    console.error("请求失败:", error);
+                }
+            })
         }).done((data) => {
-            normspecs = data
-            console.log(data)
+            normspecs = data.codes
+            console.log(data.explanations)
             var vlcharts = {}
             for(var i = 0; i < normspecs.length; i++) {
                 //if(normspecs[i] in vlcharts) continue
-                var varnum = (normspecs[i].match(/num|str/g) || []).length
-                // no variable chart skip
-                if(varnum == 0) continue
+//                var varnum = (normspecs[i].match(/num|str/g) || []).length
+//                // no variable chart skip
+//                if(varnum == 0) continue
 
                 var vars = []
-                var sp = this._restoreSpec(normspecs[i], coords[i], vars)
+                this._setVars(normspecs[i],vars)
+                // var sp = this._restoreSpec(normspecs[i], coords[i], vars)
 
-                vlcharts[JSON.stringify(sp)] = {
-                    originalspec: sp,
+                vlcharts[JSON.stringify(normspecs[i])] = {
+                    originalspec: normspecs[i],
                     vars: _.uniq(vars),
                     index: i
                 }
             }
-
+//         }).done((data) => {
+//             normspecs = data
+//             console.log(data)
+//             var vlcharts = {}
+//             for(var i = 0; i < normspecs.length; i++) {
+//                 //if(normspecs[i] in vlcharts) continue
+//                 var varnum = (normspecs[i].match(/num|str/g) || []).length
+//                 // no variable chart skip
+//                 if(varnum == 0) continue
+//
+//                 var vars = []
+//                 var sp = this._restoreSpec(normspecs[i], coords[i], vars)
+//
+//                 vlcharts[JSON.stringify(sp)] = {
+//                     originalspec: sp,
+//                     vars: _.uniq(vars),
+//                     index: i
+//                 }
+//             }
+            console.log(vlcharts)
+            
             vlcharts = _.values(vlcharts)
             Promise.all(vlcharts.map((chsp) => {
                 return vegaEmbed('#vegatest', _.extend({}, chsp.originalspec, 
@@ -760,7 +807,7 @@ export default class SumView extends EventEmitter {
             })).then((vl) => {
                 console.log(vl)                
                 vlcharts = _.filter(vlcharts, (v, i) => {return vl[i]})
-                vlcharts = this._rankCharts(vlcharts)
+//                vlcharts = this._rankCharts(vlcharts)
 
                 for(var i = 0; i < vl.length; i++) {
                     if(vl[i]) {
@@ -784,16 +831,16 @@ export default class SumView extends EventEmitter {
         })
     }
 
-    _estimateDistances(coords) {  
+    _estimateDistances(coords) {  //估计新推荐的图表与现有图表之间的距离 二维数组
         var charts = this._charts
 
-        var edist = []
+        var edist = []//edist 用于存储估计的距离
         for(var i = 0; i < coords.length; i++) {
             edist.push([])
 
             var cpvars = []
             this._kNN(coords[i], this._params.ngbrN).forEach((ch) => {
-                cpvars = _.union(cpvars, ch.vars)
+                cpvars = _.union(cpvars, ch.vars) //得到当前坐标的变量集合。
             })
 
             for(var j = 0; j < charts.length; j++) {
@@ -805,6 +852,6 @@ export default class SumView extends EventEmitter {
             }
         }
 
-        return edist
+        return edist //edist[i][j] 表示新推荐图表的第 i 个坐标与现有图表中第 j 个图表之间的估计距离
     }
 }
